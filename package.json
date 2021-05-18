@@ -1,0 +1,27 @@
+{
+  "name": "buscadordecomics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "postcss src/styles.css --output src/css/styles.css",
+    "watch": "postcss src/styles.css --output src/css/styles.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elianarlivingston/BuscadorDeComics.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elianarlivingston/BuscadorDeComics/issues"
+  },
+  "homepage": "https://github.com/elianarlivingston/BuscadorDeComics#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.15",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.1.2"
+  }
+}
