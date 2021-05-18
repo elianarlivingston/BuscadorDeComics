@@ -1,0 +1,7 @@
+# Visual Studio Code
+.vscode
+
+
+package.lock.json
+
+node_modules
