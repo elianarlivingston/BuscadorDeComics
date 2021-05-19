@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .titles{
+        @apply mb-4 text-2xl font-bold;
+    },
+    .description-text{
+        @apply text-sm font-semibold text-gray-500 uppercase mb-7;
+    },
+    .comic-container{
+        @apply cursor-pointer hover:text-red-600;
+    },
+    .img-comic-container{
+        @apply transition transform hover:-translate-y-2;
+    },
+    .element-name{
+        @apply font-bold mt-7;
+    }
+}
