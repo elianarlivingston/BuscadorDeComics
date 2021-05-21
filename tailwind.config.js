@@ -13,18 +13,25 @@ module.exports = {
           dark: '#d02428'
         },
         secondary: {
-          DEFAULT: '#151515',
-          dark: '#202020'
+          DEFAULT: '#202020',
+          dark: '#151515'
         },
         gray: {
           DEFAULT: '#999',
           dark: '#393939'
         },
+      },
+      fontFamily: {
+        'roboto': ['Roboto', 'sans-serif']
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      borderColor: ['focus-within']
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+  ],
 }
