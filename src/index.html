@@ -6,62 +6,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de comics</title>
     <!-- Styles Tailwind -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">    
+    <!-- CDN Font Roboto -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- HERO -->
     
-    <!-- START OF PAGINA DE PERSONAJES -->
-    <section class="container mx-auto">
-        <article class="flex flex-row flex-wrap">
-            <figure class="grid-cols-2 pb-8 pr-10">
-                <img class="max-w-sm" src="../example.jpeg" alt="Example image">
-            </figure>
-            <div grid="grid-cols-4">
-                <h1 class="titles">Spiderman</h1>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque, enim!</p>
-            </div>
-        </article>
-        <article>
-            <div>
-                <h1 class="titles">Comics</h1>
-                <p class="description-text"><span>49</span> resultados</p>
-            </div>
-            <div class="flex flex-wrap">
-                <!-- w-1/5 -->
-                <div class="w-1/5 comic-container">
-                    <figure class="w-11/12 img-comic-container">
-                        <img class="shadow-2xl" src="../examplecomic.jpeg" alt="Example image">
-                    </figure>
-                    <figcaption class="element-name">Name of comic blabla</figcaption>
+    <!-- Contenido centrado -->
+    <main class="flex flex-col gap-8 px-4 mx-auto max-w-7xl">
+        <!-- BARRA DE BUSQUEDA -->
+        <header class="header-wrap">
+            <h2 class="titles">Buscador</h2>
+
+            <form id="form-search" class="form-search">
+                <p class="control-search-wrap">
+                    <label class="control-search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                        <input 
+                            type="search" 
+                            placeholder="Ingresa tu busqueda..."
+                            name="search-text"
+                            class="py-2 focus:outline-none"
+                        >
+                    </label>
+                </p>
+                
+                
+               <div class="flex flex-wrap items-center gap-4 md:gap-8">
+                    <p>
+                        <label>
+                            <span class="description-text">
+                                Tipo
+                            </span>
+
+                            <select name="search-type">
+                                <option value="comics">Cómics</option>
+                                <option value="characters">Personajes</option>
+                            </select>
+                        </label>
+                    </p>
+                    <p>
+                        <label>
+                            <span class="description-text">
+                                Orden
+                            </span>
+
+                            <select name="search-type">
+                                <option value="ascendent">A/Z</option>
+                                <option value="descendant">Z/A</option>
+                                <option value="newer">Más nuevo</option>
+                                <option value="less-new">Menos nuevo</option>
+                            </select>
+                        </label>
+                    </p>
+                    <button type="submit" class="btn">Buscar</button>
+               </div>
+            </form>
+        </header>
+
+        <!-- SECTION COMICS -->
+        <section class="flex flex-col gap-8">
+            <header>
+                <h2 class="titles">Comics</h2>
+                <p class="description-text">
+                    <span>0</span> resultados
+                </p>
+            </header>
+            
+            <!-- Contenedor grid -->
+            <div class="grid gap-6 grid-column-custom">
+                <!-- LOADING (para cuando cargue el contenido de este DIV) -->
+                <div class="loading-wrap">
+                    <div class="loading-content"></div>
                 </div>
                 
-                <div class="w-1/5 comic-container">
-                    <figure class="w-11/12 img-comic-container">
-                        <img class="shadow-2xl" src="../examplecomic.jpeg" alt="Example image">
-                    </figure>
-                    <figcaption class="element-name">Name of comic blabla</figcaption>
+                <!-- CARD COMIC -->
+                <a>
+                    <article class="card-comic">
+                        <header class="p-2">
+                            <h3>The Mighty Valkyries #2</h3>
+                        </header>
+                        <figure class="card-comic__image">
+                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
+                        </figure>
+                    </article>
+                </a>
+                <a>
+                    <article class="card-comic">
+                        <header class="p-2">
+                            <h3>The Mighty Valkyries #2</h3>
+                        </header>
+                        <figure class="card-comic__image">
+                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
+                        </figure>
+                    </article>
+                </a>
+                <a>
+                    <article class="card-comic">
+                        <header class="p-2">
+                            <h3>The Mighty Valkyries #2</h3>
+                        </header>
+                        <figure class="card-comic__image">
+                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
+                        </figure>
+                    </article>
+                </a>
+                <a>
+                    <article class="card-comic">
+                        <header class="p-2">
+                            <h3>The Mighty Valkyries #2</h3>
+                        </header>
+                        <figure class="card-comic__image">
+                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
+                        </figure>
+                    </article>
+                </a>
+                <a>
+                    <article class="card-comic">
+                        <header class="p-2">
+                            <h3>The Mighty Valkyries #2</h3>
+                        </header>
+                        <figure class="card-comic__image">
+                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
+                        </figure>
+                    </article>
+                </a>
+            </div>
+
+            <!-- Paginacion -->
+            <footer class="flex items-center justify-center">
+                <div class="flex gap-2">
+                    <button id="prev" class="pagination-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>
+                    </button>
+                    <button id="current" disabled class="cursor-default pagination-item hover:bg-secondary-dark"> 1 </button>
+                    <button id="next" class="pagination-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                        </svg>
+                    </button>
                 </div>
-                <div class="w-1/5 comic-container">
-                    <figure class="w-11/12 img-comic-container">
-                        <img class="shadow-2xl" src="../examplecomic.jpeg" alt="Example image">
-                    </figure>
-                    <figcaption class="element-name">Name of comic blabla</figcaption>
-                </div>
-                <div class="w-1/5 comic-container">
-                    <figure class="w-11/12 img-comic-container">
-                        <img class="shadow-2xl" src="../examplecomic.jpeg" alt="Example image">
-                    </figure>
-                    <figcaption class="element-name">Name of comic blabla</figcaption>
-                </div>
-                <div class="w-1/5 comic-container">
-                    <figure class="w-11/12 img-comic-container">
-                        <img class="shadow-2xl" src="../examplecomic.jpeg" alt="Example image">
-                    </figure>
-                    <figcaption class="element-name">Name of comic blabla</figcaption>
+            </footer>
+        </section>
+
+        <!-- SECTION CHARACTERS -->
+        <section class="flex flex-col gap-8">
+            <header>
+                <h2 class="titles">Comics</h2>
+                <p class="description-text">
+                    <span>0</span> resultados
+                </p>
+            </header>
+            
+            <!-- Contenedor grid -->
+            <div class="grid gap-6 grid-column-custom">
+                <!-- LOADING (para cuando cargue el contenido de este DIV) -->
+                <div class="loading-wrap">
+                    <div class="loading-content"></div>
                 </div>
             </div>
-        </article>
-    </section>
-    <!-- END OF PAGINA DE PERSONAJES -->
+
+            <!-- Paginacion -->
+            <footer class="flex items-center justify-center">
+                <div class="flex gap-2">
+                    <button id="prev" class="pagination-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                        </svg>
+                    </button>
+                    <button id="current" disabled class="cursor-default pagination-item hover:bg-secondary-dark"> 1 </button>
+                    <button id="next" class="pagination-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                        </svg>
+                    </button>
+                </div>
+            </footer>
+        </section>
+
+        <!-- START OF PAGINA DE PERSONAJES -->
+        <section class="container mx-auto">
+            <article class="flex flex-row flex-wrap">
+                <figure class="grid-cols-2 pb-8 pr-10">
+                    <img class="max-w-sm" src="./assets/example.jpeg" alt="Example image">
+                </figure>
+                <div grid="grid-cols-4">
+                    <h1 class="titles">Spiderman</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque, enim!</p>
+                </div>
+            </article>
+            <article>
+                <div>
+                    <h1 class="titles">Comics</h1>
+                    <p class="description-text"><span>49</span> resultados</p>
+                </div>
+                <div class="grid gap-6 grid-column-custom">
+                    <div class="comic-container">
+                        <figure class="img-comic-container">
+                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
+                        </figure>
+                        <figcaption class="element-name">Name of comic blabla</figcaption>
+                    </div>
+                    <div class="comic-container">
+                        <figure class="img-comic-container">
+                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
+                        </figure>
+                        <figcaption class="element-name">Name of comic blabla</figcaption>
+                    </div>
+                    <div class="comic-container">
+                        <figure class="img-comic-container">
+                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
+                        </figure>
+                        <figcaption class="element-name">Name of comic blabla</figcaption>
+                    </div>
+                    <div class="comic-container">
+                        <figure class="img-comic-container">
+                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
+                        </figure>
+                        <figcaption class="element-name">Name of comic blabla</figcaption>
+                    </div>
+                    <div class="comic-container">
+                        <figure class="img-comic-container">
+                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
+                        </figure>
+                        <figcaption class="element-name">Name of comic blabla</figcaption>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+
 </body>
 </html>

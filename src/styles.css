@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    body {
+        @apply font-normal font-roboto;
+    }
+}
+
 @layer components {
     .titles{
         @apply mb-4 text-2xl font-bold;
@@ -17,5 +23,59 @@
     },
     .element-name{
         @apply font-bold mt-7;
+    }
+
+
+
+    
+    .card-comic {
+        @apply flex flex-col-reverse max-w-xs font-bold transition-colors cursor-pointer hover:text-primary;
+    }
+    .card-comic__image {
+        @apply block object-cover w-full h-full m-0 transition-all transform aspect-w-2 aspect-h-3 hover:-translate-y-6;
+    }
+    
+    
+    .header-wrap {
+        @apply flex flex-col gap-6;
+    }
+    .form-search {
+        @apply flex flex-wrap items-center justify-between gap-4;
+    }
+    .control-search-wrap {
+        @apply flex-grow max-w-3xl font-normal border-2 rounded focus-within:border-primary-dark;
+    }
+    .control-search {
+        @apply flex items-center w-full gap-4 px-4 border-b-2 border-black;
+    }
+    .btn {
+        @apply px-3 py-2 font-light text-white uppercase transition-colors bg-secondary-dark hover:bg-primary;
+    }
+    
+    
+    .pagination-item {
+        @apply flex items-center justify-center w-10 h-10 p-2 text-white transition-colors rounded-sm bg-secondary-dark hover:bg-primary;
+    }    
+
+    .loading-wrap {
+        @apply flex items-center justify-center w-full h-full;
+    }
+
+    .loading-content {
+        @apply loading animate-spin;
+    }
+}
+
+@layer utilities {
+    .grid-column-custom {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+
+    .loading {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 99999px;
+        border: 4px solid #E62429;
+        border-left-color: transparent !important; 
     }
 }
