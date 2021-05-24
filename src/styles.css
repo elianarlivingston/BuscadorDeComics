@@ -12,6 +12,9 @@
     .titles{
         @apply mb-4 text-2xl font-bold;
     },
+    .subtitle{
+      @apply mb-2 text-xl font-bold;
+    },
     .description-text{
         @apply text-sm font-semibold text-gray-500 uppercase mb-7;
     },
@@ -25,8 +28,9 @@
         @apply font-bold mt-7;
     }
 
-
-
+    .card-character{
+        @apply flex flex-col-reverse max-w-xs font-bold cursor-pointer;
+    }
     
     .card-comic {
         @apply flex flex-col-reverse max-w-xs font-bold transition-colors cursor-pointer hover:text-primary;
@@ -85,5 +89,14 @@
 
     .hero{
         background-image: url('https://frontend-proyecto-comics.adaitw.org/hero.jpg')
+    }
+
+    
+    .card-character:hover .card-character_image{
+        transform: scale(1.1);
+    }
+
+    .card-character:hover .card-character-header{
+        background-color: red;
     }
 }
