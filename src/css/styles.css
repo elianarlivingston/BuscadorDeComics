@@ -785,6 +785,13 @@ body {
   margin-bottom: 1rem;
 }
 
+.subtitle {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
 .description-text {
   font-weight: 600;
   font-size: 0.875rem;
@@ -33337,6 +33344,10 @@ body {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
 .grid-column-custom {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
@@ -33347,6 +33358,10 @@ body {
   border-radius: 99999px;
   border: 4px solid #E62429;
   border-left-color: transparent !important;
+}
+
+.hero{
+  background-image: url('src/assets/hero.jpeg')
 }
 
 @media (min-width: 640px) {

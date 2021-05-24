@@ -12,6 +12,9 @@
     .titles{
         @apply mb-4 text-2xl font-bold;
     },
+    .subtitle{
+      @apply mb-2 text-xl font-bold;
+    },
     .description-text{
         @apply text-sm font-semibold text-gray-500 uppercase mb-7;
     },
@@ -84,6 +87,6 @@
     }
 
     .hero{
-        background-image: url('../src/assets/hero.jpeg')
+        background-image: url('src/assets/hero.jpeg')
     }
 }
