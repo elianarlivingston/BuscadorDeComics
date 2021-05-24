@@ -67,6 +67,10 @@
 }
 
 @layer utilities {
+    *{
+        font-family: 'Roboto', sans-serif;
+    }
+    
     .grid-column-custom {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
