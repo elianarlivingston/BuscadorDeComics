@@ -67,6 +67,10 @@
 }
 
 @layer utilities {
+    *{
+        font-family: 'Roboto', sans-serif;
+    }
+    
     .grid-column-custom {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
@@ -77,5 +81,9 @@
         border-radius: 99999px;
         border: 4px solid #E62429;
         border-left-color: transparent !important; 
+    }
+
+    .hero{
+        background-image: url('../src/assets/hero.jpeg')
     }
 }
