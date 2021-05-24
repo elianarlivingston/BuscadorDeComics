@@ -839,6 +839,14 @@ body {
   margin-top: 1.75rem;
 }
 
+.card-character{
+  cursor: pointer;
+  display: flex;
+  flex-direction: column-reverse;
+  font-weight: 700;
+  max-width: 20rem;
+}
+
 .card-comic {
   cursor: pointer;
   display: flex;
@@ -33362,6 +33370,14 @@ body {
 
 .hero{
   background-image: url('src/assets/hero.jpeg')
+}
+
+.card-character:hover .card-character_image{
+  transform: scale(1.1);
+}
+
+.card-character:hover .card-character-header{
+  background-color: red;
 }
 
 @media (min-width: 640px) {

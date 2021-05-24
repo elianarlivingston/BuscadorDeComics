@@ -74,6 +74,35 @@
             </form>
         </header>
 
+        <!-- SECTION CHARACTERS -->
+        <section class="flex flex-col gap-8">
+            <header>
+                <h2 class="titles">Personajes</h2>
+                <p class="description-text">
+                    <span>0</span> resultados
+                </p>
+            </header>
+            
+            <!-- Contenedor grid -->
+            <div class="grid gap-6 grid-column-custom">
+                <!-- LOADING (para cuando cargue el contenido de este DIV) -->
+                <div class="loading-wrap">
+                    <div class="loading-content"></div>
+                </div>
+                
+                <!-- CHARACTER COMIC -->
+                <a>
+                    <article class="card-character">
+                        <header class="p-2 pb-16 bg-black border-t-4 border-red-500 card-character-header">
+                            <h3 class="text-white">Spiderman</h3>
+                        </header>
+                        <figure class="overflow-hidden">
+                            <img class="card-character_image" src="../src/assets/example.jpeg" alt="Comic cover">
+                        </figure>
+                    </article>
+                </a>
+        </section>
+
         <!-- SECTION COMICS -->
         <section class="flex flex-col gap-8">
             <header>
