@@ -33369,7 +33369,7 @@ body {
 }
 
 .hero{
-  background-image: url('src/assets/hero.jpeg')
+  background-image: url('https://frontend-proyecto-comics.adaitw.org/hero.jpg')
 }
 
 .card-character:hover .card-character_image{
