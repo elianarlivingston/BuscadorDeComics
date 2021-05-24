@@ -9,16 +9,17 @@
     <link rel="stylesheet" href="./css/styles.css">    
     <!-- CDN Font Roboto -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- HERO -->
     <header>
         <div class="flex justify-center bg-black">
-            <h1 class="p-1 text-4xl tracking-tighter text-white bg-red-600">MARVEL</h1>
+            <h1 class="p-1 text-4xl font-black tracking-tighter text-white bg-red-600">MARVEL</h1>
         </div>
     </header>
     <div class="h-96 hero"></div>
+    
     <!-- Contenido centrado -->
     <main class="flex flex-col gap-8 px-4 mx-auto max-w-7xl">
         <!-- BARRA DE BUSQUEDA -->
@@ -143,7 +144,7 @@
             </div>
 
             <!-- Paginacion -->
-            <footer class="flex items-center justify-center">
+            <!-- <footer class="flex items-center justify-center">
                 <div class="flex gap-2">
                     <button id="prev" class="pagination-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -157,28 +158,28 @@
                         </svg>
                     </button>
                 </div>
-            </footer>
+            </footer> -->
         </section>
 
         <!-- SECTION CHARACTERS -->
-        <section class="flex flex-col gap-8">
+        <!-- <section class="flex flex-col gap-8">
             <header>
                 <h2 class="titles">Comics</h2>
                 <p class="description-text">
                     <span>0</span> resultados
                 </p>
-            </header>
+            </header> -->
             
             <!-- Contenedor grid -->
-            <div class="grid gap-6 grid-column-custom">
+            <!-- <div class="grid gap-6 grid-column-custom"> -->
                 <!-- LOADING (para cuando cargue el contenido de este DIV) -->
-                <div class="loading-wrap">
+                <!-- <div class="loading-wrap">
                     <div class="loading-content"></div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Paginacion -->
-            <footer class="flex items-center justify-center">
+            <!-- <footer class="flex items-center justify-center">
                 <div class="flex gap-2">
                     <button id="prev" class="pagination-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
@@ -192,8 +193,8 @@
                         </svg>
                     </button>
                 </div>
-            </footer>
-        </section>
+            </footer> -->
+        <!-- </section> -->
 
         <!-- START OF PAGINA DE PERSONAJES -->
         <section class="container mx-auto">
@@ -203,49 +204,52 @@
                 </figure>
                 <div grid="grid-cols-4">
                     <h1 class="titles">Spiderman</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque, enim!</p>
+                    <p class="font-normal">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cumque, enim!</p>
                 </div>
             </article>
             <article>
-                <div>
-                    <h1 class="titles">Comics</h1>
-                    <p class="description-text"><span>49</span> resultados</p>
+                
+            </article>
+        </section>
+
+        <!-- START OF PAGINA DE COMICS -->
+        <section class="container mx-auto">
+            <article class="flex flex-row flex-wrap">
+                <figure class="grid-cols-2 pb-8 pr-10">
+                    <img class="max-w-sm" src="./assets/examplecomic.jpeg" alt="Example image">
+                </figure>
+                <div grid="grid-cols-4">
+                    <h1 class="titles">Spiderman</h1>
+                    <h2 class="subtitle">Publicado:</h2>
+                    <p class="mb-2 font-normal">22/05/2019</p>
+                    <h2 class="subtitle">Guionistas:</h2>
+                    <p class="mb-2 font-normal">Blabla y blabla</p>
+                    <h2 class="subtitle">Descripción:</h2>
+                    <p class="mb-2 font-normal">Lorem ipsum dolor sit amet.</p>
                 </div>
-                <div class="grid gap-6 grid-column-custom">
-                    <div class="comic-container">
-                        <figure class="img-comic-container">
-                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
-                        </figure>
-                        <figcaption class="element-name">Name of comic blabla</figcaption>
-                    </div>
-                    <div class="comic-container">
-                        <figure class="img-comic-container">
-                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
-                        </figure>
-                        <figcaption class="element-name">Name of comic blabla</figcaption>
-                    </div>
-                    <div class="comic-container">
-                        <figure class="img-comic-container">
-                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
-                        </figure>
-                        <figcaption class="element-name">Name of comic blabla</figcaption>
-                    </div>
-                    <div class="comic-container">
-                        <figure class="img-comic-container">
-                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
-                        </figure>
-                        <figcaption class="element-name">Name of comic blabla</figcaption>
-                    </div>
-                    <div class="comic-container">
-                        <figure class="img-comic-container">
-                            <img class="shadow-2xl" src="./assets/examplecomic.jpeg" alt="Example image">
-                        </figure>
-                        <figcaption class="element-name">Name of comic blabla</figcaption>
-                    </div>
-                </div>
+            </article>
+            <article>
+                
             </article>
         </section>
     </main>
+
+    <!-- Paginacion -->
+    <footer class="flex items-center justify-center">
+        <div class="flex gap-2">
+            <button id="prev" class="pagination-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                </svg>
+            </button>
+            <button id="current" disabled class="cursor-default pagination-item hover:bg-secondary-dark"> 1 </button>
+            <button id="next" class="pagination-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                </svg>
+            </button>
+        </div>
+    </footer>
 
     <!-- FOOTER -->
     <footer class="flex justify-center mt-12 bg-black">
