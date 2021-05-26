@@ -6,9 +6,19 @@ const fetchApi = (path, search, searchValue, offset, orderBy) => {
 
     return fetch(newUrl)
     .then(res => res.json())
-    .then(data => console.log(data))
     .catch(err => console.log(err))
 }
 
-fetchApi(`characters`, 'nameStartsWith', 'Spider', 0, '-name')
-fetchApi('comics', 'titleStartsWith', 'Spider', 0, '-title')
+// fetchApi(`characters`, 'nameStartsWith', 'Spider', 0, '-name')
+// fetchApi('comics', 'titleStartsWith', 'Spider', 0, '-title')
+
+const printCharacter = async () => {
+    const result = await fetchApi(`characters`, 'nameStartsWith', 'Spider', 0, '-name')
+    const { count, limit, offset, results } = result.data
+
+    results.forEach((el) => {
+        console.log(el)
+    });
+}
+
+printCharacter()
