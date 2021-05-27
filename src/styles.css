@@ -62,7 +62,7 @@
     }    
 
     .loading-wrap {
-        @apply flex items-center justify-center w-full h-full;
+        @apply flex items-center self-center justify-center w-full h-full;
     }
 
     .loading-content {
@@ -90,7 +90,6 @@
     .hero{
         background-image: url('https://frontend-proyecto-comics.adaitw.org/hero.jpg')
     }
-
     
     .card-character:hover .card-character_image{
         transform: scale(1.1);
