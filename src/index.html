@@ -78,7 +78,7 @@
         </header>
 
         <!-- SECTION CHARACTERS -->
-        <section class="flex flex-col gap-8">
+        <section class="flex flex-col hidden gap-8">
             <header>
                 <h2 class="titles">Personajes</h2>
                 <p class="description-text">
@@ -108,7 +108,7 @@
         </section>
 
         <!-- SECTION COMICS -->
-        <section class="flex flex-col hidden gap-8">
+        <section class="flex flex-col gap-8">
             <header>
                 <h2 class="titles">Comics</h2>
                 <p class="description-text">
@@ -117,14 +117,14 @@
             </header>
             
             <!-- Contenedor grid -->
-            <div class="grid gap-6 grid-column-custom">
+            <div class="grid gap-6 grid-column-custom" id="comicsContainer">
                 <!-- LOADING (para cuando cargue el contenido de este DIV) -->
-                <div class="loading-wrap">
+                <div class="loading-wrap" id="loadingWrapComic">
                     <div class="loading-content"></div>
                 </div>
                 
                 <!-- CARD COMIC -->
-                <a>
+                <!-- <a>
                     <article class="card-comic">
                         <header class="p-2">
                             <h3>The Mighty Valkyries #2</h3>
@@ -133,47 +133,8 @@
                             <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
                         </figure>
                     </article>
-                </a>
-                <a>
-                    <article class="card-comic">
-                        <header class="p-2">
-                            <h3>The Mighty Valkyries #2</h3>
-                        </header>
-                        <figure class="card-comic__image">
-                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
-                        </figure>
-                    </article>
-                </a>
-                <a>
-                    <article class="card-comic">
-                        <header class="p-2">
-                            <h3>The Mighty Valkyries #2</h3>
-                        </header>
-                        <figure class="card-comic__image">
-                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
-                        </figure>
-                    </article>
-                </a>
-                <a>
-                    <article class="card-comic">
-                        <header class="p-2">
-                            <h3>The Mighty Valkyries #2</h3>
-                        </header>
-                        <figure class="card-comic__image">
-                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
-                        </figure>
-                    </article>
-                </a>
-                <a>
-                    <article class="card-comic">
-                        <header class="p-2">
-                            <h3>The Mighty Valkyries #2</h3>
-                        </header>
-                        <figure class="card-comic__image">
-                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
-                        </figure>
-                    </article>
-                </a>
+                </a> -->
+                
             </div>
 
             <!-- Paginacion -->
