@@ -87,14 +87,14 @@
             </header>
             
             <!-- Contenedor grid -->
-            <div class="grid gap-6 grid-column-custom">
+            <div class="grid gap-6 grid-column-custom characters-container" id="charactersContainer">
                 <!-- LOADING (para cuando cargue el contenido de este DIV) -->
-                <div class="loading-wrap">
+                <div class="loading-wrap" id="loadingWrapCharacters">
                     <div class="loading-content"></div>
                 </div>
                 
                 <!-- CHARACTER COMIC -->
-                <a>
+                <!-- <a>
                     <article class="card-character">
                         <header class="p-2 pb-16 bg-black border-t-4 border-red-500 card-character-header">
                             <h3 class="text-white">Spiderman</h3>
@@ -103,11 +103,12 @@
                             <img class="card-character_image" src="../src/assets/example.jpeg" alt="Comic cover">
                         </figure>
                     </article>
-                </a>
+                </a> -->
+            </div>
         </section>
 
         <!-- SECTION COMICS -->
-        <section class="flex flex-col gap-8">
+        <section class="flex flex-col hidden gap-8">
             <header>
                 <h2 class="titles">Comics</h2>
                 <p class="description-text">
@@ -229,7 +230,7 @@
         <!-- </section> -->
 
         <!-- START OF PAGINA DE PERSONAJES -->
-        <section class="container mx-auto">
+        <section class="container hidden mx-auto">
             <article class="flex flex-row flex-wrap">
                 <figure class="grid-cols-2 pb-8 pr-10">
                     <img class="max-w-sm" src="./assets/example.jpeg" alt="Example image">
@@ -245,7 +246,7 @@
         </section>
 
         <!-- START OF PAGINA DE COMICS -->
-        <section class="container mx-auto">
+        <section class="container hidden mx-auto">
             <article class="flex flex-row flex-wrap">
                 <figure class="grid-cols-2 pb-8 pr-10">
                     <img class="max-w-sm" src="./assets/examplecomic.jpeg" alt="Example image">
@@ -267,7 +268,7 @@
     </main>
 
     <!-- Paginacion -->
-    <footer class="flex items-center justify-center">
+    <footer class="flex items-center justify-center mt-12">
         <div class="flex gap-2">
             <button id="prev" class="pagination-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
