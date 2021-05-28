@@ -39,6 +39,7 @@
                             type="search" 
                             placeholder="Ingresa tu busqueda..."
                             name="search-text"
+                            id="search-text"
                             class="py-2 focus:outline-none"
                         >
                     </label>
@@ -52,8 +53,8 @@
                                 Tipo
                             </span>
 
-                            <select name="search-type">
-                                <option value="comics">Cómics</option>
+                            <select name="search-type" id="search-type">
+                                <option value="comics" selected>Cómics</option>
                                 <option value="characters">Personajes</option>
                             </select>
                         </label>
@@ -64,11 +65,11 @@
                                 Orden
                             </span>
 
-                            <select name="search-type">
-                                <option value="ascendent">A/Z</option>
-                                <option value="descendant">Z/A</option>
-                                <option value="newer">Más nuevo</option>
-                                <option value="less-new">Menos nuevo</option>
+                            <select name="search-order" id="search-order">
+                                <option value="A/Z">A/Z</option>
+                                <option value="Z/A">Z/A</option>
+                                <option value="new">Más nuevo</option>
+                                <option value="old">Menos nuevo</option>
                             </select>
                         </label>
                     </p>
@@ -78,7 +79,7 @@
         </header>
 
         <!-- SECTION CHARACTERS -->
-        <section class="flex flex-col hidden gap-8">
+        <section class="flex flex-col hidden gap-8" id="characters-view">
             <header>
                 <h2 class="titles">Personajes</h2>
                 <p class="description-text">
@@ -108,7 +109,7 @@
         </section>
 
         <!-- SECTION COMICS -->
-        <section class="flex flex-col gap-8">
+        <section class="flex flex-col gap-8" id="comics-view">
             <header>
                 <h2 class="titles">Comics</h2>
                 <p class="description-text">
