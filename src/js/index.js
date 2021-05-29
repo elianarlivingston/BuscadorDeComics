@@ -9,6 +9,11 @@ const loadingWrapComic = document.getElementById('loadingWrapComic');
 const charactersView = document.getElementById('characters-view');
 const comicsView = document.getElementById('comics-view');
 
+const prevPageBtn = document.getElementById('prev-page');
+const nextPageBtn = document.getElementById('next-page');
+const firstPageBtn = document.getElementById('first-page');
+const lastPageBtn = document.getElementById('last-page');
+
 const fetchApi = (path, search, searchValue, offset, orderBy) => {
     const newUrl = `${baseUrl}/${path}?${autoritation}&${searchValue ? `${search}=${searchValue}`: ''}&limit=20&offset=${offset}&orderBy=${orderBy}`
 
@@ -65,6 +70,7 @@ const printComics = async () => {
     })
 }
 
+printComics()
 
 
 // FILTERS, FILL SELECT AND CHANGE VIEW
@@ -142,7 +148,10 @@ formSearch.addEventListener('submit', (event) => {
     const order = searchOrder.value
 
     if(type === 'comics') {
-        console.log('Comics')
+        changeView(comicsView, [comicsView, charactersView])
+        
+        const orderByValue = orderBy(order, 'name')
+        printComics('nameStartsWith', searchValue, orderByValue)
     } else {
         changeView(charactersView, [charactersView, comicsView])
 
@@ -150,3 +159,6 @@ formSearch.addEventListener('submit', (event) => {
         printCharacter('nameStartsWith', searchValue, orderByValue)
     }
 })
+
+
+// PAGINATION
