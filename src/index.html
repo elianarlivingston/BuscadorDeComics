@@ -7,6 +7,7 @@
     <title>Buscador de comics</title>
     <!-- Icon -->
     <link rel="icon" href="https://cdn.iconscout.com/icon/free/png-512/marvel-282124.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <!-- CDN Font Roboto -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
@@ -93,18 +94,6 @@
                 <div class="loading-wrap" id="loadingWrapCharacters">
                     <div class="loading-content"></div>
                 </div>
-                
-                <!-- CHARACTER COMIC -->
-                <!-- <a>
-                    <article class="card-character">
-                        <header class="p-2 pb-16 bg-black border-t-4 border-red-500 card-character-header">
-                            <h3 class="text-white">Spiderman</h3>
-                        </header>
-                        <figure class="overflow-hidden">
-                            <img class="card-character_image" src="../src/assets/example.jpeg" alt="Comic cover">
-                        </figure>
-                    </article>
-                </a> -->
             </div>
         </section>
 
@@ -123,73 +112,8 @@
                 <div class="loading-wrap" id="loadingWrapComic">
                     <div class="loading-content"></div>
                 </div>
-                
-                <!-- CARD COMIC -->
-                <!-- <a>
-                    <article class="card-comic">
-                        <header class="p-2">
-                            <h3>The Mighty Valkyries #2</h3>
-                        </header>
-                        <figure class="card-comic__image">
-                            <img src="https://i.annihil.us/u/prod/marvel/i/mg/7/10/609d8183a7f6e/portrait_uncanny.jpg" alt="Comic cover">
-                        </figure>
-                    </article>
-                </a> -->
-                
             </div>
-
-            <!-- Paginacion -->
-            <!-- <footer class="flex items-center justify-center">
-                <div class="flex gap-2">
-                    <button id="prev" class="pagination-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-                        </svg>
-                    </button>
-                    <button id="current" disabled class="cursor-default pagination-item hover:bg-secondary-dark"> 1 </button>
-                    <button id="next" class="pagination-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                        </svg>
-                    </button>
-                </div>
-            </footer> -->
         </section>
-
-        <!-- SECTION CHARACTERS -->
-        <!-- <section class="flex flex-col gap-8">
-            <header>
-                <h2 class="titles">Comics</h2>
-                <p class="description-text">
-                    <span>0</span> resultados
-                </p>
-            </header> -->
-            
-            <!-- Contenedor grid -->
-            <!-- <div class="grid gap-6 grid-column-custom"> -->
-                <!-- LOADING (para cuando cargue el contenido de este DIV) -->
-                <!-- <div class="loading-wrap">
-                    <div class="loading-content"></div>
-                </div>
-            </div> -->
-
-            <!-- Paginacion -->
-            <!-- <footer class="flex items-center justify-center">
-                <div class="flex gap-2">
-                    <button id="prev" class="pagination-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-                        </svg>
-                    </button>
-                    <button id="current" disabled class="cursor-default pagination-item hover:bg-secondary-dark"> 1 </button>
-                    <button id="next" class="pagination-item">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                        </svg>
-                    </button>
-                </div>
-            </footer> -->
-        <!-- </section> -->
 
         <!-- START OF PAGINA DE PERSONAJES -->
         <section class="container hidden mx-auto">
@@ -230,21 +154,22 @@
     </main>
 
     <!-- Paginacion -->
-    <footer class="flex items-center justify-center mt-12">
+    <section class="flex items-center justify-center mt-12" id="pagination-container">
         <div class="flex gap-2">
-            <button id="prev" class="pagination-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-                </svg>
+            <button id="first-page" class="pagination-item">
+                <i class="fas fa-angle-double-left" aria-label="hidden"></i>
             </button>
-            <button id="current" disabled class="cursor-default pagination-item hover:bg-secondary-dark"> 1 </button>
-            <button id="next" class="pagination-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                </svg>
+            <button id="prev-page" class="pagination-item">
+                <i class="fas fa-angle-left" aria-label="hidden"></i>
+            </button>
+            <button id="next-page" class="pagination-item">
+                <i class="fas fa-angle-right" aria-label="hidden"></i>
+            </button>
+            <button id="last-page" class="pagination-item">
+                <i class="fas fa-angle-double-right" aria-label="hidden"></i>
             </button>
         </div>
-    </footer>
+    </section>
 
     <!-- FOOTER -->
     <footer class="flex justify-center mt-12 bg-black">

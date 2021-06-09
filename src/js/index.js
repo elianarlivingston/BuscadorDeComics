@@ -9,6 +9,16 @@ const loadingWrapComic = document.getElementById('loadingWrapComic');
 const charactersView = document.getElementById('characters-view');
 const comicsView = document.getElementById('comics-view');
 
+// const paginationContainer = document.getElementById('pagination-container');
+const prevPageBtn = document.getElementById('prev-page');
+const nextPageBtn = document.getElementById('next-page');
+const firstPageBtn = document.getElementById('first-page');
+const lastPageBtn = document.getElementById('last-page');
+
+let offset = 0;
+let totalResults = 0;
+
+
 const fetchApi = (path, search, searchValue, offset, orderBy) => {
     const newUrl = `${baseUrl}/${path}?${autoritation}&${searchValue ? `${search}=${searchValue}`: ''}&limit=20&offset=${offset}&orderBy=${orderBy}`
 
@@ -22,14 +32,14 @@ const pathNonFoundNowanted = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_
 const pathNonFoundWanted = "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_uncanny";
 
 const printCharacter = async (search, searchValue, orderBy) => {
-    const personajes = await fetchApi(`characters`, search, searchValue, 0, orderBy);
-    const { count, limit, offset, results } = personajes.data;
+    const personajes = await fetchApi(`characters`, search, searchValue, offset, orderBy);
+    const {results, total} = personajes.data;
 
     charactersContainer.innerHTML = ''
 
     results.forEach((personaje) => {
-        const a = document.createElement('a');
-        a.innerHTML =
+        const personajeCard = document.createElement('a');
+        personajeCard.innerHTML =
                     `<article class="card-character max-h-72">
                         <header class="p-2 pb-16 bg-black border-t-4 border-red-500 card-character-header">
                             <h3 class="text-white">${personaje.name}</h3>
@@ -39,17 +49,22 @@ const printCharacter = async (search, searchValue, orderBy) => {
                         </figure>
                     </article>`
         loadingWrapCharacters.style.display = 'none'
-        charactersContainer.appendChild(a);
+        charactersContainer.appendChild(personajeCard);
     });
+
+    totalResults = total;
 }
 
-const printComics = async () => {
-    const comics = await fetchApi(`comics`, '', '', 0, 'title');
-    const { count, limit, offset, results} = comics.data;
+
+const printComics = async (search, searchValue, orderBy) => {
+    const comics = await fetchApi(`comics`, search, searchValue, offset, orderBy);
+    const {results, total} = comics.data;
+
+    comicsContainer.innerHTML = ''
 
     results.forEach((comic) => {
-        const a = document.createElement('a');
-        a.innerHTML =
+        const comicCard = document.createElement('a');
+        comicCard.innerHTML =
         `<a>
             <article class="card-comic">
                 <header class="p-2">
@@ -61,10 +76,12 @@ const printComics = async () => {
             </article>
         </a>`
         loadingWrapComic.style.display = 'none';
-        comicsContainer.appendChild(a);
+        comicsContainer.appendChild(comicCard);
     })
+    totalResults = total;
 }
 
+printComics('', '', 'title');
 
 
 // FILTERS, FILL SELECT AND CHANGE VIEW
@@ -107,6 +124,7 @@ const changeView = (viewSelect, totalViews) => {
             el.style.display = 'none'
         }
     })
+    return viewSelectId
 }
 
 // filter
@@ -142,11 +160,49 @@ formSearch.addEventListener('submit', (event) => {
     const order = searchOrder.value
 
     if(type === 'comics') {
-        console.log('Comics')
+        offset = 0;
+        changeView(comicsView, [comicsView, charactersView])
+
+        const orderByValue = orderBy(order, 'title')
+        printComics('nameStartsWith', searchValue, orderByValue)
     } else {
+        offset = 0;
         changeView(charactersView, [charactersView, comicsView])
 
         const orderByValue = orderBy(order, 'name')
         printCharacter('nameStartsWith', searchValue, orderByValue)
     }
 })
+
+// PAGINATION
+
+const updatePagination = () => {
+    const type = searchType.value
+    const searchValue = searchText.value
+    const order = searchOrder.value
+    if(type === 'comics'){
+        const orderByValue = orderBy(order, 'title')
+        printComics('nameStartsWith', searchValue, orderByValue)
+    } else{
+        const orderByValue = orderBy(order, 'name')
+        printCharacter('nameStartsWith', searchValue, orderByValue)
+    }
+}
+
+
+nextPageBtn.onclick = () => {
+        offset += 20;
+        updatePagination()
+} 
+prevPageBtn.onclick = () => {
+    offset -= 20;
+    updatePagination()    
+}
+firstPageBtn.onclick = () => {
+    offset = 0;
+    updatePagination()
+} 
+lastPageBtn.onclick = () => {
+    offset = totalResults - 20;
+    updatePagination()
+}
