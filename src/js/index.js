@@ -176,6 +176,25 @@ formSearch.addEventListener('submit', (event) => {
 
 // PAGINATION
 
+const disableButtons = () => {
+    if(offset === 0){
+        firstPageBtn.disabled = true;
+        prevPageBtn.disabled = true;
+    } 
+    if(offset > 0){
+        firstPageBtn.disabled = false;
+        prevPageBtn.disabled = false;
+    }
+    if(offset === totalResults - 20){
+        nextPageBtn.disabled = true;
+        lastPageBtn.disabled = true;
+    }
+    if(offset < totalResults - 20) {
+        nextPageBtn.disabled = false;
+        lastPageBtn.disabled = false;
+    }
+}
+
 const updatePagination = () => {
     const type = searchType.value
     const searchValue = searchText.value
@@ -187,12 +206,13 @@ const updatePagination = () => {
         const orderByValue = orderBy(order, 'name')
         printCharacter('nameStartsWith', searchValue, orderByValue)
     }
+    disableButtons()
 }
 
 
 nextPageBtn.onclick = () => {
-        offset += 20;
-        updatePagination()
+    offset += 20;
+    updatePagination()
 } 
 prevPageBtn.onclick = () => {
     offset -= 20;
