@@ -1006,14 +1006,6 @@ body {
 .pagination-item {
   --tw-bg-opacity: 1;
   background-color: rgba(21, 21, 21, var(--tw-bg-opacity));
-}
-
-.pagination-item:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgba(230, 36, 41, var(--tw-bg-opacity));
-}
-
-.pagination-item {
   border-radius: 0.125rem;
   display: flex;
   align-items: center;
@@ -33379,6 +33371,10 @@ body {
 
 .card-character:hover .card-character-header{
   background-color: red;
+}
+
+.pagination-item-opacity{
+  opacity: 0.5;
 }
 
 @media (min-width: 640px) {
