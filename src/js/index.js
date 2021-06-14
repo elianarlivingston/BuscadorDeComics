@@ -15,6 +15,9 @@ const nextPageBtn = document.getElementById('next-page');
 const firstPageBtn = document.getElementById('first-page');
 const lastPageBtn = document.getElementById('last-page');
 
+const comicsResultsHTML = document.getElementById('comicsResultsHTML');
+const charactersResultsHTML = document.getElementById('charactersResultsHTML');
+
 let offset = 0;
 let totalResults = 0;
 
@@ -53,6 +56,9 @@ const printCharacter = async (search, searchValue, orderBy) => {
                 loadingWrapCharacters.style.display = 'none'
                 charactersContainer.appendChild(personajeCard);
             });
+          totalResults = total;
+          printResults(totalResults)
+          disableButtons()
         } else {
             const emptyResults = document.createElement('article')
             emptyResults.innerHTML = `
@@ -94,14 +100,23 @@ const printComics = async (search, searchValue, orderBy) => {
                 loadingWrapComic.style.display = 'none';
                 comicsContainer.appendChild(comicCard);
             })
+          totalResults = total;
+          printResults(totalResults)
+          disableButtons()
         } else {
             const emptyResults = document.createElement('article')
             emptyResults.innerHTML = `
                 <header>
                     <h2>No hay resultados</h2>
                 </header>
-            `
-
+                <figure class="card-comic__image">
+                    <img src="${comic.thumbnail.path === pathNonFoundNowanted ? pathNonFoundWanted : comic.thumbnail.path}.${comic.thumbnail.extension}" alt="${comic.title}">
+                </figure>
+            </article>
+        </a>`
+        loadingWrapComic.style.display = 'none';
+        comicsContainer.appendChild(comicCard);
+    }
             comicsContainer.appendChild(emptyResults);
         }
 
@@ -170,32 +185,45 @@ formSearch.addEventListener('submit', (event) => {
     if(type === 'comics') {
         offset = 0;
         changeView(comicsView, [comicsView, charactersView])
-
+      
         printComics('title', searchValue, order)
+        disableButtons()
     } else {
         offset = 0;
         changeView(charactersView, [charactersView, comicsView])
 
         printCharacter('nameStartsWith', searchValue, order)
+        disableButtons()
     }
 })
+
+// RESULTS
+
+const printResults = () => {
+    const type = searchType.value
+    
+    if(type === 'comics'){
+        comicsResultsHTML.innerText = totalResults
+    } else{
+        charactersResultsHTML.innerText = totalResults
+    }
+}
 
 // PAGINATION
 
 const disableButtons = () => {
+    // const type = searchType.value
     if(offset === 0){
         firstPageBtn.disabled = true;
         prevPageBtn.disabled = true;
-    } 
-    if(offset > 0){
+    } else {
         firstPageBtn.disabled = false;
         prevPageBtn.disabled = false;
     }
-    if(offset === totalResults - 20){
+    if(offset + 20 >= totalResults) {
         nextPageBtn.disabled = true;
         lastPageBtn.disabled = true;
-    }
-    if(offset < totalResults - 20) {
+    } else {
         nextPageBtn.disabled = false;
         lastPageBtn.disabled = false;
     }
@@ -221,6 +249,9 @@ nextPageBtn.onclick = () => {
 } 
 prevPageBtn.onclick = () => {
     offset -= 20;
+    if (offset < 0) {
+        offset = 0
+    }
     updatePagination()    
 }
 firstPageBtn.onclick = () => {
@@ -228,6 +259,9 @@ firstPageBtn.onclick = () => {
     updatePagination()
 } 
 lastPageBtn.onclick = () => {
-    offset = totalResults - 20;
+    const isExact = totalResults % 20 === 0
+    const pages = Math.floor(totalResults / 20)
+    offset = (isExact ? pages - 1 : pages) * 20
+    
     updatePagination()
 }
