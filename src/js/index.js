@@ -15,6 +15,9 @@ const nextPageBtn = document.getElementById('next-page');
 const firstPageBtn = document.getElementById('first-page');
 const lastPageBtn = document.getElementById('last-page');
 
+const comicsResultsHTML = document.getElementById('comicsResultsHTML');
+const charactersResultsHTML = document.getElementById('charactersResultsHTML');
+
 let offset = 0;
 let totalResults = 0;
 
@@ -51,8 +54,11 @@ const printCharacter = async (search, searchValue, orderBy) => {
         loadingWrapCharacters.style.display = 'none'
         charactersContainer.appendChild(personajeCard);
     });
-
+    
     totalResults = total;
+    printResults(totalResults)
+    disableButtons()
+    
 }
 
 
@@ -79,6 +85,8 @@ const printComics = async (search, searchValue, orderBy) => {
         comicsContainer.appendChild(comicCard);
     })
     totalResults = total;
+    printResults(totalResults)
+    disableButtons()
 }
 
 printComics('', '', 'title');
@@ -162,34 +170,47 @@ formSearch.addEventListener('submit', (event) => {
     if(type === 'comics') {
         offset = 0;
         changeView(comicsView, [comicsView, charactersView])
-
+        
         const orderByValue = orderBy(order, 'title')
         printComics('nameStartsWith', searchValue, orderByValue)
+        disableButtons()
     } else {
         offset = 0;
         changeView(charactersView, [charactersView, comicsView])
-
+        
         const orderByValue = orderBy(order, 'name')
         printCharacter('nameStartsWith', searchValue, orderByValue)
+        disableButtons()
     }
 })
+
+// RESULTS
+
+const printResults = () => {
+    const type = searchType.value
+    
+    if(type === 'comics'){
+        comicsResultsHTML.innerText = totalResults
+    } else{
+        charactersResultsHTML.innerText = totalResults
+    }
+}
 
 // PAGINATION
 
 const disableButtons = () => {
+    // const type = searchType.value
     if(offset === 0){
         firstPageBtn.disabled = true;
         prevPageBtn.disabled = true;
-    } 
-    if(offset > 0){
+    } else {
         firstPageBtn.disabled = false;
         prevPageBtn.disabled = false;
     }
-    if(offset === totalResults - 20){
+    if(offset + 20 >= totalResults) {
         nextPageBtn.disabled = true;
         lastPageBtn.disabled = true;
-    }
-    if(offset < totalResults - 20) {
+    } else {
         nextPageBtn.disabled = false;
         lastPageBtn.disabled = false;
     }
@@ -216,6 +237,9 @@ nextPageBtn.onclick = () => {
 } 
 prevPageBtn.onclick = () => {
     offset -= 20;
+    if (offset < 0) {
+        offset = 0
+    }
     updatePagination()    
 }
 firstPageBtn.onclick = () => {
@@ -223,6 +247,9 @@ firstPageBtn.onclick = () => {
     updatePagination()
 } 
 lastPageBtn.onclick = () => {
-    offset = totalResults - 20;
+    const isExact = totalResults % 20 === 0
+    const pages = Math.floor(totalResults / 20)
+    offset = (isExact ? pages - 1 : pages) * 20
+    
     updatePagination()
 }

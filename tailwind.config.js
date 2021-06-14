@@ -23,12 +23,13 @@ module.exports = {
       },
       fontFamily: {
         'roboto': ['Roboto', 'sans-serif']
-      }
+      },
     },
   },
   variants: {
     extend: {
-      borderColor: ['focus-within']
+      borderColor: ['focus-within'],
+      opacity: ['disabled']
     },
   },
   plugins: [
