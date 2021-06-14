@@ -68,8 +68,6 @@ const printCharacter = async (search, searchValue, orderBy) => {
             `
             charactersContainer.appendChild(emptyResults);
         }
-
-        totalResults = total;
     } catch (error) {
         console.log(error)
     }
@@ -111,16 +109,11 @@ const printComics = async (search, searchValue, orderBy) => {
                 </header>
                 <figure class="card-comic__image">
                     <img src="${comic.thumbnail.path === pathNonFoundNowanted ? pathNonFoundWanted : comic.thumbnail.path}.${comic.thumbnail.extension}" alt="${comic.title}">
-                </figure>
-            </article>
-        </a>`
+                </figure>`
         loadingWrapComic.style.display = 'none';
         comicsContainer.appendChild(comicCard);
-    }
-            comicsContainer.appendChild(emptyResults);
+        comicsContainer.appendChild(emptyResults);
         }
-
-        totalResults = total;  
     } catch (error) {
         console.log(error)
     }
