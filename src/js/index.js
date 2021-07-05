@@ -5,9 +5,12 @@ const charactersContainer = document.getElementById('charactersContainer');
 const loadingWrapCharacters = document.getElementById('loadingWrapCharacters')
 const comicsContainer = document.getElementById('comicsContainer');
 const loadingWrapComic = document.getElementById('loadingWrapComic');
+const detailCharacter = document.getElementById('character-detail')
+const comicsOfCharacters = document.getElementById('comics-of-character')
 
 const charactersView = document.getElementById('characters-view');
 const comicsView = document.getElementById('comics-view');
+const characterView = document.getElementById('character-view')
 
 // const paginationContainer = document.getElementById('pagination-container');
 const prevPageBtn = document.getElementById('prev-page');
@@ -23,7 +26,7 @@ let totalResults = 0;
 
 
 const fetchApi = (path, search, searchValue, offset, orderBy) => {
-    const newUrl = `${baseUrl}/${path}?${autoritation}&${searchValue ? `${search}=${searchValue}`: ''}&limit=20&offset=${offset}&orderBy=${orderBy}`
+    const newUrl = `${baseUrl}/${path}?${autoritation}${searchValue ? `&${search}=${searchValue}`: ''}&limit=20${offset ? `&offset=${offset}` : ''}${orderBy ? `&orderBy=${orderBy}` : ''}`
 
     return fetch(newUrl)
     .then(res => res.json())
@@ -34,7 +37,71 @@ const fetchApi = (path, search, searchValue, offset, orderBy) => {
 const pathNonFoundNowanted = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available";
 const pathNonFoundWanted = "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_uncanny";
 
+let characterId = null
+
+const printDetailtCharater = async (id) => {
+    characterId = id
+
+    try {
+        const character = await fetchApi(`characters/${id}`);
+        const { name, thumbnail, description } = character.data.results[0]
+
+        const comicsOfCharacter = await fetchApi(`characters/${id}/comics`, '', '', offset);
+        const { results }= comicsOfCharacter.data
+
+        changeView(characterView, [characterView, comicsView, charactersView])
+
+        detailCharacter.innerHTML = `
+        <article class="flex flex-row flex-wrap">
+            <figure class="grid-cols-2 pb-8 pr-10">
+                <img class="max-w-sm" src="${thumbnail.path}.${thumbnail.extension}" alt="Example image">
+            </figure>
+            <div grid="grid-cols-4">
+                <h1 class="titles">${name}</h1>
+                <p class="font-normal">${description}</p>
+            </div>
+        </article>
+        `
+        comicsOfCharacters.innerHTML = ''
+
+        if(results.length > 0) {
+            results.forEach((comic) => {
+                const comicCard = document.createElement('a');
+                comicCard.innerHTML =
+                `<a>
+                    <article class="card-comic">
+                        <header class="p-2">
+                            <h3>${comic.title}</h3>
+                        </header>
+                        <figure class="card-comic__image">
+                            <img src="${comic.thumbnail.path === pathNonFoundNowanted ? pathNonFoundWanted : comic.thumbnail.path}.${comic.thumbnail.extension}" alt="${comic.title}">
+                        </figure>
+                    </article>
+                </a>`
+                comicsOfCharacters.appendChild(comicCard);
+            })
+        } else {
+            const emptyResults = document.createElement('article')
+            emptyResults.innerHTML = `
+                <header>
+                    <h2>No hay resultados</h2>
+                </header>
+                <figure class="card-comic__image">
+                    <img src="${comic.thumbnail.path === pathNonFoundNowanted ? pathNonFoundWanted : comic.thumbnail.path}.${comic.thumbnail.extension}" alt="${comic.title}">
+                </figure>`
+            comicsOfCharacters.appendChild(comicCard);
+            comicsOfCharacters.appendChild(emptyResults);
+        }
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 const printCharacter = async (search, searchValue, orderBy) => {
+    characterId = null
+
     try {
         const personajes = await fetchApi(`characters`, search, searchValue, offset, orderBy);
         const {results, total} = personajes.data;
@@ -45,8 +112,8 @@ const printCharacter = async (search, searchValue, orderBy) => {
             results.forEach((personaje) => {
                 const personajeCard = document.createElement('a');
                 personajeCard.innerHTML =
-                            `<article class="card-character max-h-72">
-                                <header class="p-2 pb-16 bg-black border-t-4 border-red-500 card-character-header">
+                            `<article class="card-character max-h-72"">
+                                <header class="p-2 pb-16 bg-black border-t-4 border-red-500 card-character-header"">
                                     <h3 class="text-white">${personaje.name}</h3>
                                 </header>
                                 <figure class="overflow-hidden">
@@ -54,6 +121,7 @@ const printCharacter = async (search, searchValue, orderBy) => {
                                 </figure>
                             </article>`
                 loadingWrapCharacters.style.display = 'none'
+                personajeCard.onclick = () => printDetailtCharater(personaje.id)
                 charactersContainer.appendChild(personajeCard);
             });
           totalResults = total;
@@ -73,8 +141,9 @@ const printCharacter = async (search, searchValue, orderBy) => {
     }
 }
 
-
 const printComics = async (search, searchValue, orderBy) => {
+    characterId = null
+
     try {
         const comics = await fetchApi(`comics`, search, searchValue, offset, orderBy);
         const {results, total} = comics.data;
@@ -155,7 +224,7 @@ const fillSelect = (event) => {
 searchType.addEventListener('input', fillSelect);
 
 // change view
-const changeView = (viewSelect, totalViews) => {
+function changeView(viewSelect, totalViews) {
     const viewSelectId = viewSelect.id
 
     totalViews.forEach((el) => {
@@ -177,13 +246,13 @@ formSearch.addEventListener('submit', (event) => {
 
     if(type === 'comics') {
         offset = 0;
-        changeView(comicsView, [comicsView, charactersView])
+        changeView(comicsView, [comicsView, charactersView, characterView])
       
         printComics('title', searchValue, order)
         disableButtons()
     } else {
         offset = 0;
-        changeView(charactersView, [charactersView, comicsView])
+        changeView(charactersView, [charactersView, comicsView, characterView])
 
         printCharacter('nameStartsWith', searchValue, order)
         disableButtons()
@@ -226,6 +295,10 @@ const updatePagination = () => {
     const type = searchType.value
     const searchValue = searchText.value
     const order = searchOrder.value
+
+    if(characterId) {
+        return printDetailtCharater(characterId)
+    }
 
     if(type === 'comics'){
         printComics('nameStartsWith', searchValue, order)
