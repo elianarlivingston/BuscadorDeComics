@@ -141,6 +141,7 @@ const printCharacter = async (search, searchValue, orderBy) => {
     }
 }
 
+// GET ALL THE COMICS
 const printComics = async (search, searchValue, orderBy) => {
     characterId = null
 
