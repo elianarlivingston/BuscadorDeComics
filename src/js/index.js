@@ -73,7 +73,7 @@ const printCharacter = async (search, searchValue, orderBy) => {
     }
 }
 
-
+// GET ALL THE COMICS
 const printComics = async (search, searchValue, orderBy) => {
     try {
         const comics = await fetchApi(`comics`, search, searchValue, offset, orderBy);
