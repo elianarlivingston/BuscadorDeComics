@@ -74,7 +74,7 @@ const printDetailtCharater = async (id) => {
     detailCharacter.innerHTML = `
         <article class="flex flex-row flex-wrap">
             <figure class="grid-cols-2 pb-8 pr-10">
-                <img class="max-w-sm" src="${thumbnail.path}.${thumbnail.extension}" alt="Example image">
+                <img class="max-w-sm" src="${thumbnail.path}.${thumbnail.extension}" alt="${name}">
             </figure>
             <div grid="grid-cols-4">
                 <h1 class="titles">${name}</h1>
@@ -104,6 +104,7 @@ const printDetailtCharater = async (id) => {
                     </article>
                 </a>`;
         comicsOfCharacters.appendChild(comicCard);
+        disableButtons();
       });
     } else {
       const emptyResults = document.createElement("article");
@@ -120,6 +121,7 @@ const printDetailtCharater = async (id) => {
                 </figure>`;
       comicsOfCharacters.appendChild(comicCard);
       comicsOfCharacters.appendChild(emptyResults);
+      disableButtons();
     }
   } catch (error) {
     console.log(error);
@@ -156,9 +158,9 @@ const printDetailtComic = async (id) => {
                 <div grid="grid-cols-4">
                     <h1 class="titles">${title}</h1>
                     <h2 class="subtitle">Publicado:</h2>
-                    <p class="mb-2 font-normal">22/05/2019</p>
+                    <p class="mb-2 font-normal">${character.data.results[0].dates[0].date}</p>
                     <h2 class="subtitle">Guionistas:</h2>
-                    <p class="mb-2 font-normal">Blabla y blabla</p>
+                    <p class="mb-2 font-normal">${character.data.results[0].creators.items[0].name}</p>
                     <h2 class="subtitle">Descripción:</h2>
                     <p class="mb-2 font-normal">${description}</p>
                 </div>
@@ -187,6 +189,7 @@ const printDetailtComic = async (id) => {
                                 </figure>
                             </article>`;
         charactersOfComic.appendChild(comicCard);
+        disableButtons();
       });
     } else {
       const emptyResults = document.createElement("article");
@@ -203,6 +206,7 @@ const printDetailtComic = async (id) => {
                 </figure>`;
       charactersOfComic.appendChild(comicCard);
       charactersOfComic.appendChild(emptyResults);
+      disableButtons();
     }
   } catch (error) {
     console.log(error);
